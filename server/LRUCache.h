@@ -10,8 +10,8 @@ enum CapacityType {
 };
 class LRUCache {
 	int capacity, size;
-	DoublyLinkedList *pageList;
-	unordered_map<string, Node*> pageMap;
+	DoublyLinkedList *KVList;
+	unordered_map<string, Node*> KeyNodeMap;
 	ofstream outfile;
 	ifstream infile;
 public:

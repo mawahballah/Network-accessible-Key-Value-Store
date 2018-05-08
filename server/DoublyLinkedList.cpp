@@ -5,59 +5,59 @@ bool DoublyLinkedList::isEmpty() {
 }
 
 DoublyLinkedList::DoublyLinkedList() : front(NULL), rear(NULL) {}
-Node* DoublyLinkedList::add_page_to_head(string key, string value) {
-	Node *page = new Node(key, value);
+Node* DoublyLinkedList::add_node_to_front(string key, string value) {
+	Node *entry = new Node(key, value);
 	if (!front && !rear) {
-		front = rear = page;
+		front = rear = entry;
 	}
 	else {
-		page->next = front;
-		front->prev = page;
-		front = page;
+		entry->next = front;
+		front->prev = entry;
+		front = entry;
 	}
-	return page;
+	return entry;
 }
-void DoublyLinkedList::move_page_to_head(Node *page) {
-	if (page == front) {
+void DoublyLinkedList::move_node_to_front(Node *entry) {
+	if (entry == front) {
 		return;
 	}
-	if (page == rear) {
+	if (entry == rear) {
 		rear = rear->prev;
 		rear->next = NULL;
 	}
 	else {
-		page->prev->next = page->next;
-		page->next->prev = page->prev;
+		entry->prev->next = entry->next;
+		entry->next->prev = entry->prev;
 	}
 
-	page->next = front;
-	page->prev = NULL;
-	front->prev = page;
-	front = page;
+	entry->next = front;
+	entry->prev = NULL;
+	front->prev = entry;
+	front = entry;
 }
-void DoublyLinkedList::remove_node(Node*page)
+void DoublyLinkedList::remove_node(Node*entry)
 {
-	if (page == rear)
+	if (entry == rear)
 	{
 		rear = rear->prev;
 		if(rear)
 			rear->next = NULL;
-		delete page;
+		delete entry;
 		return;
 	}
-	if (page == front)
+	if (entry == front)
 	{
 		front = front->next;
 		if (front)
 			front->prev = NULL;
-		delete page;
+		delete entry;
 		return;
 	}
-	page->prev->next = page->next;
-	page->next->prev = page->prev;
-	delete page;
+	entry->prev->next = entry->next;
+	entry->next->prev = entry->prev;
+	delete entry;
 }
-void DoublyLinkedList::remove_rear_page() {
+void DoublyLinkedList::remove_rear_node() {
 	if (isEmpty()) {
 		return;
 	}
@@ -72,6 +72,6 @@ void DoublyLinkedList::remove_rear_page() {
 		delete temp;
 	}
 }
-Node* DoublyLinkedList::get_rear_page() {
+Node* DoublyLinkedList::get_rear_node() {
 	return rear;
 }
