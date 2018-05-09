@@ -14,8 +14,7 @@ LRUCache::LRUCache(int capacity, CapacityType type) {
 	default:
 		this->capacity = 10 * 1024 * 1024;
 		break;
-	}
-	this->capacity = capacity;
+	}	
 	size = 0;
 	KVList = new DoublyLinkedList();
 	KeyNodeMap = unordered_map<string, Node*>();

@@ -87,7 +87,7 @@ void Server::process_connection(void * data) {
 			send(client, message.data(), message.size(), NULL);
 
 		}
-		Sleep(100);
+		Sleep(100); // to ensure resources are freed 
 	}
 	printf("End Call\n");
 }
@@ -108,7 +108,7 @@ void Server::start_server(void * data) {
 	InetPton(AF_INET, _T("127.0.0.1"), &addr.sin_addr.s_addr);//Broadcast locally	
 	addr.sin_port = htons(1111); //Port
 	addr.sin_family = AF_INET; //IPv4 Socket
-
+	//sock_stream ->TCP 
 	SOCKET sListen = socket(AF_INET, SOCK_STREAM, NULL); //Create socket to listen for new connections
 	bind(sListen, (SOCKADDR*)&addr, sizeof(addr)); //Bind the address to the socket
 	while (1)
